@@ -1,0 +1,16 @@
+version: '2'
+services:
+  traderservicelearning-mongodb:
+    image: mongo:4.2.6
+    ports:
+      - '27017:27017'
+    command: mongos --configdb csvr/traderservicelearning-mongodb-config --bind_ip 0.0.0.0
+  traderservicelearning-mongodb-node:
+    build:
+      context: .
+      dockerfile: mongodb/MongoDB.Dockerfile
+    command: mongod --shardsvr --replSet rs1
+  traderservicelearning-mongodb-config:
+    image: mongo:4.2.6
+    container_name: traderservicelearning-mongodb-config
+    command: mongod --configsvr --dbpath /data/db --replSet csvr

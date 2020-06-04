@@ -1,0 +1,31 @@
+{
+  "name": "DefaultContainer",
+  "fields": [
+    {
+      "fieldName": "strategy",
+      "fieldType": "STRATEGY",
+      "fieldValues": "SAMPLE_ENUM"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "calibrationContainer",
+      "otherEntityRelationshipName": "defaultContainer",
+      "relationshipName": "calibrationContainer"
+    }
+  ],
+  "changelogDate": "20200530170619",
+  "javadoc": "The DefaultContainer entity.\\n@author A true hipster",
+  "entityTableName": "default_container",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["TraderServiceLearning"],
+  "microserviceName": "TraderServiceLearning"
+}
