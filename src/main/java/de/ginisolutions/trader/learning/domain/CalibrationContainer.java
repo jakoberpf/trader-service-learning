@@ -29,7 +29,6 @@ public class CalibrationContainer implements Serializable {
     @JsonIgnoreProperties(value = "calibrationContainers", allowSetters = true)
     private DefaultContainer defaultContainer;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
     public String getId() {
         return id;
     }
@@ -63,7 +62,6 @@ public class CalibrationContainer implements Serializable {
     public void setDefaultContainer(DefaultContainer defaultContainer) {
         this.defaultContainer = defaultContainer;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -81,7 +79,6 @@ public class CalibrationContainer implements Serializable {
         return 31;
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "CalibrationContainer{" +

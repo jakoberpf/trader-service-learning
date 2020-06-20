@@ -1,8 +1,5 @@
 package de.ginisolutions.trader.learning.service;
 
-import de.ginisolutions.trader.learning.domain.DefaultContainer;
-import de.ginisolutions.trader.learning.repository.DefaultContainerRepository;
-import de.ginisolutions.trader.learning.service.dto.DefaultContainerDTO;
 import de.ginisolutions.trader.learning.service.mapper.DefaultContainerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

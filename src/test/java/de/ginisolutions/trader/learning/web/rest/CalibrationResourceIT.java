@@ -27,12 +27,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import de.ginisolutions.trader.learning.domain.enumeration.STRATEGY;
 /**
- * Integration tests for the {@link CalibrationContainerResource} REST controller.
+ * Integration tests for the {@link CalibrationResource} REST controller.
  */
 @SpringBootTest(classes = { TraderServiceLearningApp.class, TestSecurityConfiguration.class })
 @AutoConfigureMockMvc
 @WithMockUser
-public class CalibrationContainerResourceIT {
+public class CalibrationResourceIT {
 
     private static final STRATEGY DEFAULT_STRATEGY = STRATEGY.SAMPLE_ENUM;
     private static final STRATEGY UPDATED_STRATEGY = STRATEGY.SAMPLE_ENUM;
@@ -129,7 +129,7 @@ public class CalibrationContainerResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(calibrationContainer.getId())))
             .andExpect(jsonPath("$.[*].strategy").value(hasItem(DEFAULT_STRATEGY.toString())));
     }
-    
+
     @Test
     public void getCalibrationContainer() throws Exception {
         // Initialize the database

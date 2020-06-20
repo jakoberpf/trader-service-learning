@@ -1,9 +1,6 @@
 package de.ginisolutions.trader.learning.service.mapper;
 
 
-import de.ginisolutions.trader.learning.domain.*;
-import de.ginisolutions.trader.learning.service.dto.DefaultContainerDTO;
-
 import org.mapstruct.*;
 
 /**

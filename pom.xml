@@ -304,6 +304,16 @@
             <artifactId>trader-domain</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>de.ginisolutions.trader.trading</groupId>
+            <artifactId>trader-service-trading</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>de.ginisolutions.trader.history</groupId>
+            <artifactId>trader-service-history</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!--Trader Commons / Domain Dependency-->
     </dependencies>
 
