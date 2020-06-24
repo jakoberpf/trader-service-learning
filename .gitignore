@@ -145,3 +145,5 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+src/test/resources/static/kaggle_bitfinex
+bitstamp_trades_from_20131125_usd.csv

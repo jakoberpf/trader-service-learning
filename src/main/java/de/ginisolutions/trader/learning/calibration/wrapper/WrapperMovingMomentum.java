@@ -3,6 +3,7 @@ package de.ginisolutions.trader.learning.calibration.wrapper;
 import de.ginisolutions.trader.common.strategy.impl.MovingMomentumStrategy;
 import de.ginisolutions.trader.common.strategy.parameter.ParameterMM;
 import de.ginisolutions.trader.common.strategy.parameter.StrategyParameter;
+import de.ginisolutions.trader.learning.calibration.Wrapper;
 import org.ta4j.core.BarSeries;
 import org.ta4j.core.BarSeriesManager;
 import org.ta4j.core.Strategy;

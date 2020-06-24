@@ -7,7 +7,6 @@ import de.ginisolutions.trader.history.domain.enumeration.SYMBOL;
 import de.ginisolutions.trader.learning.calibration.model.ProfitSet;
 import de.ginisolutions.trader.learning.calibration.model.ProfitSetFactory;
 import de.ginisolutions.trader.learning.calibration.utils.AttributeBuilder;
-import de.ginisolutions.trader.learning.calibration.wrapper.Wrapper;
 import de.ginisolutions.trader.learning.calibration.wrapper.WrapperCommodityChannelIndex;
 import de.ginisolutions.trader.learning.calibration.wrapper.WrapperMovingMomentum;
 import de.ginisolutions.trader.learning.calibration.wrapper.WrapperRelativeStrengthIndex;
