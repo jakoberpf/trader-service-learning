@@ -4,7 +4,8 @@ import de.ginisolutions.trader.history.domain.TickPackage;
 import de.ginisolutions.trader.history.domain.enumeration.INTERVAL;
 import de.ginisolutions.trader.history.domain.enumeration.MARKET;
 import de.ginisolutions.trader.history.domain.enumeration.SYMBOL;
-import de.ginisolutions.trader.learning.calibration.model.TestTick_coinapi;
+import de.ginisolutions.trader.learning.calibration.model.coinapi.CoinapiTestTick;
+import de.ginisolutions.trader.learning.calibration.model.cryptowat.CryptowatTestTick;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.ta4j.core.BarSeries;
@@ -21,10 +22,18 @@ public class TickConverter {
 
     private static final Logger logger = LoggerFactory.getLogger(TickConverter.class);
 
-    public static List<TickPackage> convertCoinAPI2Tick(List<TestTick_coinapi> testTicks, MARKET market, SYMBOL symbol, INTERVAL interval) {
+    /**
+     *
+     * @param coinapiTestTicks
+     * @param market
+     * @param symbol
+     * @param interval
+     * @return
+     */
+    public static List<TickPackage> convertCoinapi2Tick(List<CoinapiTestTick> coinapiTestTicks, MARKET market, SYMBOL symbol, INTERVAL interval) {
         List<TickPackage> converted = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'");
-        for (TestTick_coinapi tick : testTicks) {
+        for (CoinapiTestTick tick : coinapiTestTicks) {
             TickPackage current = new TickPackage(
                     market,
                     symbol,
@@ -91,6 +100,18 @@ public class TickConverter {
         return filtered1;
     }
 
+    public static List<TickPackage> convertCryptowat2Tick(List<CryptowatTestTick> asList, MARKET market, SYMBOL symbol, INTERVAL interval) {
+        System.out.println(asList.size());
+        return new ArrayList<>();
+    }
+
+    /**
+     *
+     * @param testTicks
+     * @param market
+     * @param symbol
+     * @return
+     */
     public static BarSeries convertTick2BarSeries(List<TickPackage> testTicks, MARKET market, SYMBOL symbol) {
         BarSeries barSeries = new BaseBarSeriesBuilder()
                 .withName(market.getName() + "-" + symbol.getNameUpper())
@@ -110,4 +131,6 @@ public class TickConverter {
         });
         return barSeries;
     }
+
+
 }

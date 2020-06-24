@@ -9,13 +9,13 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link CalibrationContainer} and its DTO {@link CalibrationContainerDTO}.
  */
-@Mapper(componentModel = "spring", uses = {DefaultContainerMapper.class})
+@Mapper(componentModel = "spring")
 public interface CalibrationContainerMapper extends EntityMapper<CalibrationContainerDTO, CalibrationContainer> {
 
-    @Mapping(source = "defaultContainer.id", target = "defaultContainerId")
+//    @Mapping(source = "defaultContainer.id", target = "defaultContainerId")
     CalibrationContainerDTO toDto(CalibrationContainer calibrationContainer);
 
-    @Mapping(source = "defaultContainerId", target = "defaultContainer")
+//    @Mapping(source = "defaultContainerId", target = "defaultContainer")
     CalibrationContainer toEntity(CalibrationContainerDTO calibrationContainerDTO);
 
     default CalibrationContainer fromId(String id) {

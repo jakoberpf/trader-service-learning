@@ -1,6 +1,6 @@
-package de.ginisolutions.trader.learning.calibration.model;
+package de.ginisolutions.trader.learning.calibration.model.coinapi;
 
-public class TestTick_coinapi {
+public class TestTick {
 
     /**
      * From https://docs.coinapi.io/#ohlcv
@@ -29,10 +29,10 @@ public class TestTick_coinapi {
     private String volume_traded;
     private String trades_count;
 
-    public TestTick_coinapi() {
+    public TestTick() {
     }
 
-    public TestTick_coinapi(String time_period_start, String time_period_end, String time_open, String time_close, String price_open, String price_high, String price_low, String price_close, String volume_traded, String trades_count) {
+    public TestTick(String time_period_start, String time_period_end, String time_open, String time_close, String price_open, String price_high, String price_low, String price_close, String volume_traded, String trades_count) {
         this.time_period_start = time_period_start;
         this.time_period_end = time_period_end;
         this.time_open = time_open;

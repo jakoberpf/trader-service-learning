@@ -8,6 +8,7 @@ import de.ginisolutions.trader.learning.service.CalibrationContainerService;
 import de.ginisolutions.trader.learning.service.dto.CalibrationContainerDTO;
 import de.ginisolutions.trader.learning.service.mapper.CalibrationContainerMapper;
 
+import de.ginisolutions.trader.trading.domain.enumeration.STRATEGY;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import de.ginisolutions.trader.learning.domain.enumeration.STRATEGY;
 /**
  * Integration tests for the {@link CalibrationResource} REST controller.
  */

@@ -1,22 +1,22 @@
 package de.ginisolutions.trader.learning.service.dto;
 
+import de.ginisolutions.trader.trading.domain.enumeration.STRATEGY;
 import io.swagger.annotations.ApiModel;
 import java.io.Serializable;
-import de.ginisolutions.trader.learning.domain.enumeration.STRATEGY;
 
 /**
  * A DTO for the {@link de.ginisolutions.trader.learning.domain.CalibrationContainer} entity.
  */
 @ApiModel(description = "The ValueContainer entity.\n@author A true hipster")
 public class CalibrationContainerDTO implements Serializable {
-    
+
     private String id;
 
     private STRATEGY strategy;
 
 
     private String defaultContainerId;
-    
+
     public String getId() {
         return id;
     }

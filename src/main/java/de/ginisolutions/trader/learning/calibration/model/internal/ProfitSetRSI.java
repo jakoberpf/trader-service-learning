@@ -1,12 +1,12 @@
 package de.ginisolutions.trader.learning.calibration.model;
 
-import de.ginisolutions.trader.common.strategy.parameter.ParameterRelativeStrengthIndex;
+import de.ginisolutions.trader.common.strategy.parameter.ParameterRSI;
 import de.ginisolutions.trader.common.strategy.parameter.StrategyParameter;
 
 import javax.validation.constraints.NotBlank;
 import java.time.Duration;
 
-public class ProfitRSI implements ProfitSet {
+public class ProfitSetRSI implements ProfitSet {
     @NotBlank
     private double profit;
 
@@ -14,11 +14,11 @@ public class ProfitRSI implements ProfitSet {
     private Duration duration;
 
     @NotBlank
-    private ParameterRelativeStrengthIndex parameterRelativeStrengthIndex;
+    private ParameterRSI parameterRSI;
 
-    public ProfitRSI(double profit, ParameterRelativeStrengthIndex parameterRelativeStrengthIndex) {
+    public ProfitSetRSI(double profit, ParameterRSI parameterRSI) {
         this.profit = profit;
-        this.parameterRelativeStrengthIndex = parameterRelativeStrengthIndex;
+        this.parameterRSI = parameterRSI;
     }
 
     public double getProfit() {
@@ -38,10 +38,10 @@ public class ProfitRSI implements ProfitSet {
     }
 
     public StrategyParameter getParams() {
-        return parameterRelativeStrengthIndex;
+        return parameterRSI;
     }
 
     public void setParams(StrategyParameter params) {
-        this.parameterRelativeStrengthIndex = (ParameterRelativeStrengthIndex) params;
+        this.parameterRSI = (ParameterRSI) params;
     }
 }

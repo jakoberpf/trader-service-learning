@@ -1,4 +1,4 @@
-package de.ginisolutions.trader.learning.calibration.model;
+package de.ginisolutions.trader.learning.calibration.model.cryptowat;
 
 /**
  * From https://docs.cryptowat.ch/rest-api/markets/ohlc
@@ -24,7 +24,7 @@ package de.ginisolutions.trader.learning.calibration.model;
  */
 
 
-public class TestTick_cryptowat {
+public class TestTick {
 
     private String CloseTime;
     private String OpenPrice;
@@ -34,10 +34,10 @@ public class TestTick_cryptowat {
     private String Volume;
     private String QuoteVolume;
 
-    public TestTick_cryptowat() {
+    public TestTick() {
     }
 
-    public TestTick_cryptowat(String closeTime, String openPrice, String highPrice, String lowPrice, String closePrice, String volume, String quoteVolume) {
+    public TestTick(String closeTime, String openPrice, String highPrice, String lowPrice, String closePrice, String volume, String quoteVolume) {
         CloseTime = closeTime;
         OpenPrice = openPrice;
         HighPrice = highPrice;
