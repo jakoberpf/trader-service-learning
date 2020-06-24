@@ -1,8 +1,9 @@
-package de.jakoberpf.trader.backend.StrategyExamples;
+package de.ginisolutions.trader.learning.strategy;
 
-import de.jakoberpf.trader.backend.TestDataProvider.Provider;
-import de.jakoberpf.trader.backend.spring.repository.model.learning.parameter.ParameterRelativeStrengthIndex;
-import de.jakoberpf.trader.backend.strategies.impl.RelativeStrengthIndexStrategy;
+
+import de.ginisolutions.trader.common.strategy.impl.RelativeStrengthIndexStrategy;
+import de.ginisolutions.trader.common.strategy.parameter.ParameterRSI;
+import de.ginisolutions.trader.learning.calibration.utils.TickProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.ta4j.core.BarSeries;
@@ -11,46 +12,47 @@ import org.ta4j.core.Strategy;
 import org.ta4j.core.TradingRecord;
 import org.ta4j.core.analysis.criteria.*;
 
-import static de.jakoberpf.trader.backend.spring.repository.model.exchange.ExchangeEnum.Binance;
-import static de.jakoberpf.trader.backend.spring.repository.model.exchange.IntervalEnum.*;
-import static de.jakoberpf.trader.backend.spring.repository.model.exchange.MarketEnum.BTCUSDT;
+import static de.ginisolutions.trader.history.domain.enumeration.INTERVAL.*;
+import static de.ginisolutions.trader.history.domain.enumeration.MARKET.BINANCE;
+import static de.ginisolutions.trader.history.domain.enumeration.SYMBOL.BTCUSDT;
+
 
 public class RelativeStrengthIndexExample {
 
     private static final Logger logger = LoggerFactory.getLogger(RelativeStrengthIndexExample.class);
 
     public static void main(String[] args) throws Exception {
-//        Binance_BTCUSD_minutely_TestSeries();
-        Binance_BTCUSD_minutely_LiveSeries();
+        Binance_BTCUSD_minutely_TestSeries();
+//        Binance_BTCUSD_minutely_LiveSeries();
 //        Binance_BTCUSDT_hourly_LiveSeries();
 //        Binance_BTCUSDT_daily_LiveSeries();
     }
 
     public static void Binance_BTCUSD_minutely_TestSeries() {
-        final BarSeries barSeries = Provider.getTestBarSeries(Binance, BTCUSDT, ONE_MINUTE);
-        final ParameterRelativeStrengthIndex parameterRSI = new ParameterRelativeStrengthIndex(5, 200, 2, 5, 95);
+        final BarSeries barSeries = TickProvider.getStaticBarSeries(BINANCE, BTCUSDT, ONE_MINUTE, "kaggle_bitfinex", 800000);
+        final ParameterRSI parameterRSI = new ParameterRSI(5, 200, 2, 5, 95);
         backtest(barSeries, parameterRSI);
     }
 
     public static void Binance_BTCUSD_minutely_LiveSeries() {
-        final BarSeries barSeries = Provider.getLiveBarSeries(Binance, BTCUSDT, ONE_MINUTE);
-        final ParameterRelativeStrengthIndex parameterRSI = new ParameterRelativeStrengthIndex(5, 200, 2, 5, 95);
+        final BarSeries barSeries = TickProvider.getLiveBarSeries(BINANCE, BTCUSDT, ONE_MINUTE);
+        final ParameterRSI parameterRSI = new ParameterRSI(5, 200, 2, 5, 95);
         backtest(barSeries, parameterRSI);
     }
 
     public static void Binance_BTCUSDT_hourly_LiveSeries() {
-        final BarSeries barSeries = Provider.getLiveBarSeries(Binance, BTCUSDT, HOURLY);
-        final ParameterRelativeStrengthIndex parameterRSI = new ParameterRelativeStrengthIndex(5, 200, 2, 5, 95);
+        final BarSeries barSeries = TickProvider.getLiveBarSeries(BINANCE, BTCUSDT, HOURLY);
+        final ParameterRSI parameterRSI = new ParameterRSI(5, 200, 2, 5, 95);
         backtest(barSeries, parameterRSI);
     }
 
     public static void Binance_BTCUSDT_daily_LiveSeries() {
-        final BarSeries barSeries = Provider.getLiveBarSeries(Binance, BTCUSDT, DAILY);
-        final ParameterRelativeStrengthIndex parameterRSI = new ParameterRelativeStrengthIndex(5, 200, 2, 5, 95);
+        final BarSeries barSeries = TickProvider.getLiveBarSeries(BINANCE, BTCUSDT, DAILY);
+        final ParameterRSI parameterRSI = new ParameterRSI(5, 200, 2, 5, 95);
         backtest(barSeries, parameterRSI);
     }
 
-    public static void backtest(BarSeries barSeries, ParameterRelativeStrengthIndex parameterRSI) {
+    public static void backtest(BarSeries barSeries, ParameterRSI parameterRSI) {
         logger.info("Test RelativeStrengthIndex Strategy");
 
         // Building the trading strategy
@@ -64,10 +66,8 @@ public class RelativeStrengthIndexExample {
         TotalProfitCriterion totalProfit = new TotalProfitCriterion();
         // Total profits
         logger.info("Total profit: " + totalProfit.calculate(barSeries, tradingRecord));
-        // Number of relevant bars
-//        System.out.println("Number of relevant bars: " + new NumberOfBarsCriterion().calculate(barSeries, tradingRecord));
         // Number of all bars
-//        System.out.println("Number of all bars: " + tradingRecord.getTradeCount());
+        logger.info("Number of all bars: " + tradingRecord.getTradeCount());
         // Average profit (per bar)
         logger.info("Average profit (per bar): " + new AverageProfitCriterion().calculate(barSeries, tradingRecord));
         // Number of trades
@@ -77,13 +77,13 @@ public class RelativeStrengthIndexExample {
         // Maximum drawdown
         logger.info("Maximum drawdown: " + new MaximumDrawdownCriterion().calculate(barSeries, tradingRecord));
         // Reward-risk ratio
-//        System.out.println("Reward-risk ratio: " + new RewardRiskRatioCriterion().calculate(barSeries, tradingRecord));
+        logger.info("Reward-risk ratio: " + new RewardRiskRatioCriterion().calculate(barSeries, tradingRecord));
         // Total transaction cost
         logger.info("Total transaction cost (from $1000): " + new LinearTransactionCostCriterion(1000, 0.005).calculate(barSeries, tradingRecord));
         // Buy-and-hold
         logger.info("Buy-and-hold: " + new BuyAndHoldCriterion().calculate(barSeries, tradingRecord));
         // Total profit vs buy-and-hold
         logger.info("Custom strategy profit vs buy-and-hold strategy profit: "
-                + new VersusBuyAndHoldCriterion(totalProfit).calculate(barSeries, tradingRecord));
+            + new VersusBuyAndHoldCriterion(totalProfit).calculate(barSeries, tradingRecord));
     }
 }

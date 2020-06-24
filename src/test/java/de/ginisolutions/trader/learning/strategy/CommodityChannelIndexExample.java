@@ -1,8 +1,8 @@
-package de.jakoberpf.trader.backend.StrategyExamples;
+package de.ginisolutions.trader.learning.strategy;
 
-import de.jakoberpf.trader.backend.TestDataProvider.Provider;
-import de.jakoberpf.trader.backend.spring.repository.model.learning.parameter.ParameterCommodityChannelIndex;
-import de.jakoberpf.trader.backend.strategies.impl.CommodityChannelIndexStrategy;
+import de.ginisolutions.trader.common.strategy.impl.CommodityChannelIndexStrategy;
+import de.ginisolutions.trader.common.strategy.parameter.ParameterCCI;
+import de.ginisolutions.trader.learning.calibration.utils.TickProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.ta4j.core.BarSeries;
@@ -11,47 +11,49 @@ import org.ta4j.core.Strategy;
 import org.ta4j.core.TradingRecord;
 import org.ta4j.core.analysis.criteria.*;
 
-import static de.jakoberpf.trader.backend.spring.repository.model.exchange.ExchangeEnum.Binance;
-import static de.jakoberpf.trader.backend.spring.repository.model.exchange.IntervalEnum.*;
-import static de.jakoberpf.trader.backend.spring.repository.model.exchange.MarketEnum.BTCUSDT;
+import static de.ginisolutions.trader.history.domain.enumeration.INTERVAL.*;
+import static de.ginisolutions.trader.history.domain.enumeration.MARKET.BINANCE;
+import static de.ginisolutions.trader.history.domain.enumeration.SYMBOL.BTCUSDT;
+
 
 public class CommodityChannelIndexExample {
 
-    private static final Logger logger = LoggerFactory.getLogger(CommodityChannelIndexExample.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommodityChannelIndexExample.class);
 
     public static void main(String[] args) {
-//        Binance_BTCUSD_minutely_TestSeries();
+        Binance_BTCUSD_minutely_StaticSeries();
 //        Binance_BTCUSD_minutely_LiveSeries();
 //        Binance_BTCUSDT_hourly_LiveSeries();
 //        Binance_BTCUSDT_daily_LiveSeries();
     }
 
-    public static void Binance_BTCUSD_minutely_TestSeries() {
-        final BarSeries barSeries = Provider.getTestBarSeries(Binance, BTCUSDT, ONE_MINUTE);
-        final ParameterCommodityChannelIndex parameterCCI = new ParameterCommodityChannelIndex(200, 5, 100, -100, 5);
+    public static void Binance_BTCUSD_minutely_StaticSeries() {
+        final BarSeries barSeries = TickProvider.getStaticBarSeries(BINANCE, BTCUSDT, ONE_MINUTE, "kaggle_bitfinex", 800000); // kaggle_bitfinex
+        final ParameterCCI parameterCCI = new ParameterCCI(200, -5, 100, -100, 5);
         execute(barSeries, parameterCCI);
     }
 
     public static void Binance_BTCUSD_minutely_LiveSeries() {
-        final BarSeries barSeries = Provider.getLiveBarSeries(Binance, BTCUSDT, ONE_MINUTE);
-        final ParameterCommodityChannelIndex parameterCCI = new ParameterCommodityChannelIndex(200, 5, 100, -100, 5);
+        final BarSeries barSeries = TickProvider.getLiveBarSeries(BINANCE, BTCUSDT, ONE_MINUTE);
+        final ParameterCCI parameterCCI = new ParameterCCI(200, 5, 100, -100, 5);
         execute(barSeries, parameterCCI);
     }
 
     public static void Binance_BTCUSDT_hourly_LiveSeries() {
-        final BarSeries barSeries = Provider.getLiveBarSeries(Binance, BTCUSDT, HOURLY);
-        final ParameterCommodityChannelIndex parameterCCI = new ParameterCommodityChannelIndex(200, 5, 100, -100, 5);
+        final BarSeries barSeries = TickProvider.getLiveBarSeries(BINANCE, BTCUSDT, HOURLY);
+//        final ParameterCCI parameterCCI = new ParameterCCI(200, 5, 100, -100, 5);
+        final ParameterCCI parameterCCI = new ParameterCCI(199, 4, 94, -91, -5);
         execute(barSeries, parameterCCI);
     }
 
     public static void Binance_BTCUSDT_daily_LiveSeries() {
-        final BarSeries barSeries = Provider.getLiveBarSeries(Binance, BTCUSDT, DAILY);
-        final ParameterCommodityChannelIndex parameterCCI = new ParameterCommodityChannelIndex(200, 5, 100, -100, 5);
+        final BarSeries barSeries = TickProvider.getLiveBarSeries(BINANCE, BTCUSDT, DAILY);
+        final ParameterCCI parameterCCI = new ParameterCCI(200, 5, 100, -100, 5);
         execute(barSeries, parameterCCI);
     }
 
-    public static void execute(BarSeries barSeries, ParameterCommodityChannelIndex parameterCCI) {
-        logger.info("Test RelativeStrengthIndex Strategy");
+    public static void execute(BarSeries barSeries, ParameterCCI parameterCCI) {
+        LOGGER.info("Test RelativeStrengthIndex Strategy");
 
         // Building the trading strategy
         Strategy strategy = CommodityChannelIndexStrategy.buildStrategy(barSeries, parameterCCI);
@@ -63,28 +65,25 @@ public class CommodityChannelIndexExample {
         // Back Test Results
         TotalProfitCriterion totalProfit = new TotalProfitCriterion();
         // Total profits
-        logger.info("Total profit: " + totalProfit.calculate(barSeries, tradingRecord));
-        // Number of relevant bars
-//        System.out.println("Number of relevant bars: " + new NumberOfBarsCriterion().calculate(barSeries, tradingRecord));
+        LOGGER.info("Total profit: " + totalProfit.calculate(barSeries, tradingRecord));
         // Number of all bars
-//        System.out.println("Number of all bars: " + tradingRecord.getTradeCount());
-        logger.info(")Number of all bars: " + seriesManager.getBarSeries().getBarCount());
+        LOGGER.info("Number of all bars: " + seriesManager.getBarSeries().getBarCount());
         // Average profit (per bar)
-        logger.info("Average profit (per bar): " + new AverageProfitCriterion().calculate(barSeries, tradingRecord));
+        LOGGER.info("Average profit (per bar): " + new AverageProfitCriterion().calculate(barSeries, tradingRecord));
         // Number of trades
-        logger.info("Number of trades: " + new NumberOfTradesCriterion().calculate(barSeries, tradingRecord));
+        LOGGER.info("Number of trades: " + new NumberOfTradesCriterion().calculate(barSeries, tradingRecord));
         // Profitable trades ratio
-        logger.info("Profitable trades ratio: " + new AverageProfitableTradesCriterion().calculate(barSeries, tradingRecord));
+        LOGGER.info("Profitable trades ratio: " + new AverageProfitableTradesCriterion().calculate(barSeries, tradingRecord));
         // Maximum drawdown
-        logger.info("Maximum drawdown: " + new MaximumDrawdownCriterion().calculate(barSeries, tradingRecord));
+        LOGGER.info("Maximum drawdown: " + new MaximumDrawdownCriterion().calculate(barSeries, tradingRecord));
         // Reward-risk ratio
-//        System.out.println("Reward-risk ratio: " + new RewardRiskRatioCriterion().calculate(barSeries, tradingRecord));
+        LOGGER.info("Reward-risk ratio: " + new RewardRiskRatioCriterion().calculate(barSeries, tradingRecord));
         // Total transaction cost
-        logger.info("Total transaction cost (from $1000): " + new LinearTransactionCostCriterion(1000, 0.005).calculate(barSeries, tradingRecord));
+        LOGGER.info("Total transaction cost (from $1000): " + new LinearTransactionCostCriterion(1000, 0.002).calculate(barSeries, tradingRecord));
         // Buy-and-hold
-        logger.info("Buy-and-hold: " + new BuyAndHoldCriterion().calculate(barSeries, tradingRecord));
+        LOGGER.info("Buy-and-hold: " + new BuyAndHoldCriterion().calculate(barSeries, tradingRecord));
         // Total profit vs buy-and-hold
-        logger.info("Custom strategy profit vs buy-and-hold strategy profit: "
-                + new VersusBuyAndHoldCriterion(totalProfit).calculate(barSeries, tradingRecord));
+        LOGGER.info("Custom strategy profit vs buy-and-hold strategy profit: "
+            + new VersusBuyAndHoldCriterion(totalProfit).calculate(barSeries, tradingRecord));
     }
 }

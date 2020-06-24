@@ -1,8 +1,9 @@
-package de.jakoberpf.trader.backend.StrategyExamples;
+package de.ginisolutions.trader.learning.strategy;
 
-import de.jakoberpf.trader.backend.TestDataProvider.Provider;
-import de.jakoberpf.trader.backend.spring.repository.model.learning.parameter.ParameterMovingMomentum;
-import de.jakoberpf.trader.backend.strategies.impl.MovingMomentumStrategy;
+import de.ginisolutions.trader.common.strategy.impl.MovingMomentumStrategy;
+import de.ginisolutions.trader.common.strategy.parameter.ParameterMM;
+import de.ginisolutions.trader.learning.calibration.utils.TickProvider;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.ta4j.core.BarSeries;
@@ -11,50 +12,50 @@ import org.ta4j.core.Strategy;
 import org.ta4j.core.TradingRecord;
 import org.ta4j.core.analysis.criteria.*;
 
-import static de.jakoberpf.trader.backend.spring.repository.model.exchange.ExchangeEnum.Binance;
-import static de.jakoberpf.trader.backend.spring.repository.model.exchange.IntervalEnum.*;
-import static de.jakoberpf.trader.backend.spring.repository.model.exchange.MarketEnum.BTCUSDT;
+import static de.ginisolutions.trader.history.domain.enumeration.INTERVAL.*;
+import static de.ginisolutions.trader.history.domain.enumeration.MARKET.BINANCE;
+import static de.ginisolutions.trader.history.domain.enumeration.SYMBOL.BTCUSDT;
 
 public class MovingMomentumTradingExample {
 
     private static final Logger logger = LoggerFactory.getLogger(MovingMomentumTradingExample.class);
 
     public static void main(String[] args) {
-//        Binance_BTCUSD_minutely_TestSeries();
-        Binance_BTCUSD_minutely_LiveSeries();
+        Binance_BTCUSD_minutely_TestSeries();
+//        Binance_BTCUSD_minutely_LiveSeries();
 //        Binance_BTCUSDT_hourly_LiveSeries();
 //        Binance_BTCUSDT_daily_LiveSeries();
     }
 
     public static void Binance_BTCUSD_minutely_TestSeries() {
         logger.warn("Binance_BTCUSD_minutely_TestSeries");
-        final BarSeries barSeries = Provider.getTestBarSeries(Binance, BTCUSDT, ONE_MINUTE);
-        final ParameterMovingMomentum parameterMM = new ParameterMovingMomentum(10, 30, 14, 9, 26, 18, 20);
+        final BarSeries barSeries = TickProvider.getStaticBarSeries(BINANCE, BTCUSDT, ONE_MINUTE, "kaggle_bitfinex", 40000);
+        final ParameterMM parameterMM = new ParameterMM(10, 30, 14, 9, 26, 18, 20);
         execute(barSeries, parameterMM);
     }
 
     public static void Binance_BTCUSD_minutely_LiveSeries() {
         logger.warn("Binance_BTCUSD_minutely_LiveSeries");
-        final BarSeries barSeries = Provider.getLiveBarSeries(Binance, BTCUSDT, ONE_MINUTE);
-        final ParameterMovingMomentum parameterMM = new ParameterMovingMomentum(10, 30, 14, 9, 26, 18, 20);
+        final BarSeries barSeries = TickProvider.getLiveBarSeries(BINANCE, BTCUSDT, ONE_MINUTE);
+        final ParameterMM parameterMM = new ParameterMM(10, 30, 14, 9, 26, 18, 20);
         execute(barSeries, parameterMM);
     }
 
     public static void Binance_BTCUSDT_hourly_LiveSeries() {
         logger.warn("Binance_BTCUSDT_hourly_LiveSeries");
-        final BarSeries barSeries = Provider.getLiveBarSeries(Binance, BTCUSDT, HOURLY);
-        final ParameterMovingMomentum parameterMM = new ParameterMovingMomentum(10, 30, 14, 9, 26, 18, 20);
+        final BarSeries barSeries = TickProvider.getLiveBarSeries(BINANCE, BTCUSDT, HOURLY);
+        final ParameterMM parameterMM = new ParameterMM(10, 30, 14, 9, 26, 18, 20);
         execute(barSeries, parameterMM);
     }
 
     public static void Binance_BTCUSDT_daily_LiveSeries() {
         logger.warn("Binance_BTCUSDT_daily_LiveSeries");
-        final BarSeries barSeries = Provider.getLiveBarSeries(Binance, BTCUSDT, DAILY);
-        final ParameterMovingMomentum parameterMM = new ParameterMovingMomentum(10, 30, 14, 9, 26, 18, 20);
+        final BarSeries barSeries = TickProvider.getLiveBarSeries(BINANCE, BTCUSDT, DAILY);
+        final ParameterMM parameterMM = new ParameterMM(10, 30, 14, 9, 26, 18, 20);
         execute(barSeries, parameterMM);
     }
 
-    public static void execute(BarSeries barSeries, ParameterMovingMomentum parameterMM) {
+    public static void execute(BarSeries barSeries, ParameterMM parameterMM) {
         logger.info("Test MovingMomentum Strategy");
 
         // Building the trading strategy

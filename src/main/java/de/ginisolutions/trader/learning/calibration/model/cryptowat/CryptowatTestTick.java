@@ -24,95 +24,105 @@ package de.ginisolutions.trader.learning.calibration.model.cryptowat;
  */
 
 
-public class TestTick {
+public class CryptowatTestTick {
 
-    private String CloseTime;
-    private String OpenPrice;
-    private String HighPrice;
-    private String LowPrice;
-    private String ClosePrice;
-    private String Volume;
-    private String QuoteVolume;
+    private Double[] numbers;
 
-    public TestTick() {
+    public Double[] getNumbers() {
+        return numbers;
     }
 
-    public TestTick(String closeTime, String openPrice, String highPrice, String lowPrice, String closePrice, String volume, String quoteVolume) {
-        CloseTime = closeTime;
-        OpenPrice = openPrice;
-        HighPrice = highPrice;
-        LowPrice = lowPrice;
-        ClosePrice = closePrice;
-        Volume = volume;
-        QuoteVolume = quoteVolume;
+    public void setNumbers(Double[] numbers) {
+        this.numbers = numbers;
     }
 
-    public String getCloseTime() {
-        return CloseTime;
-    }
-
-    public void setCloseTime(String closeTime) {
-        CloseTime = closeTime;
-    }
-
-    public String getOpenPrice() {
-        return OpenPrice;
-    }
-
-    public void setOpenPrice(String openPrice) {
-        OpenPrice = openPrice;
-    }
-
-    public String getHighPrice() {
-        return HighPrice;
-    }
-
-    public void setHighPrice(String highPrice) {
-        HighPrice = highPrice;
-    }
-
-    public String getLowPrice() {
-        return LowPrice;
-    }
-
-    public void setLowPrice(String lowPrice) {
-        LowPrice = lowPrice;
-    }
-
-    public String getClosePrice() {
-        return ClosePrice;
-    }
-
-    public void setClosePrice(String closePrice) {
-        ClosePrice = closePrice;
-    }
-
-    public String getVolume() {
-        return Volume;
-    }
-
-    public void setVolume(String volume) {
-        Volume = volume;
-    }
-
-    public String getQuoteVolume() {
-        return QuoteVolume;
-    }
-
-    public void setQuoteVolume(String quoteVolume) {
-        QuoteVolume = quoteVolume;
-    }
-
-    @Override
-    public String toString() {
-        return "TestTick_cryptowat{" +
-            "CloseTime='" + CloseTime + '\'' +
-            ", OpenPrice='" + OpenPrice + '\'' +
-            ", HighPrice='" + HighPrice + '\'' +
-            ", LowPrice='" + LowPrice + '\'' +
-            ", ClosePrice='" + ClosePrice + '\'' +
-            ", Volume='" + Volume + '\'' +
-            ", QuoteVolume='" + QuoteVolume + '\'' +
-            '}';
-    }
+//    private String CloseTime;
+//    private String OpenPrice;
+//    private String HighPrice;
+//    private String LowPrice;
+//    private String ClosePrice;
+//    private String Volume;
+//    private String QuoteVolume;
+//
+//    public CryptowatTestTick() {
+//    }
+//
+//    public CryptowatTestTick(String closeTime, String openPrice, String highPrice, String lowPrice, String closePrice, String volume, String quoteVolume) {
+//        CloseTime = closeTime;
+//        OpenPrice = openPrice;
+//        HighPrice = highPrice;
+//        LowPrice = lowPrice;
+//        ClosePrice = closePrice;
+//        Volume = volume;
+//        QuoteVolume = quoteVolume;
+//    }
+//
+//    public String getCloseTime() {
+//        return CloseTime;
+//    }
+//
+//    public void setCloseTime(String closeTime) {
+//        CloseTime = closeTime;
+//    }
+//
+//    public String getOpenPrice() {
+//        return OpenPrice;
+//    }
+//
+//    public void setOpenPrice(String openPrice) {
+//        OpenPrice = openPrice;
+//    }
+//
+//    public String getHighPrice() {
+//        return HighPrice;
+//    }
+//
+//    public void setHighPrice(String highPrice) {
+//        HighPrice = highPrice;
+//    }
+//
+//    public String getLowPrice() {
+//        return LowPrice;
+//    }
+//
+//    public void setLowPrice(String lowPrice) {
+//        LowPrice = lowPrice;
+//    }
+//
+//    public String getClosePrice() {
+//        return ClosePrice;
+//    }
+//
+//    public void setClosePrice(String closePrice) {
+//        ClosePrice = closePrice;
+//    }
+//
+//    public String getVolume() {
+//        return Volume;
+//    }
+//
+//    public void setVolume(String volume) {
+//        Volume = volume;
+//    }
+//
+//    public String getQuoteVolume() {
+//        return QuoteVolume;
+//    }
+//
+//    public void setQuoteVolume(String quoteVolume) {
+//        QuoteVolume = quoteVolume;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "TestTick_cryptowat{" +
+//            "CloseTime='" + CloseTime + '\'' +
+//            ", OpenPrice='" + OpenPrice + '\'' +
+//            ", HighPrice='" + HighPrice + '\'' +
+//            ", LowPrice='" + LowPrice + '\'' +
+//            ", ClosePrice='" + ClosePrice + '\'' +
+//            ", Volume='" + Volume + '\'' +
+//            ", QuoteVolume='" + QuoteVolume + '\'' +
+//            '}';
+//    }
 }

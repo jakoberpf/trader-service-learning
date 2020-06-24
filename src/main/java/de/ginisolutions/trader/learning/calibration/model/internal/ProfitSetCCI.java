@@ -1,10 +1,11 @@
-package de.ginisolutions.trader.learning.calibration.model;
+package de.ginisolutions.trader.learning.calibration.model.internal;
 
 import de.ginisolutions.trader.common.strategy.parameter.ParameterCCI;
 import de.ginisolutions.trader.common.strategy.parameter.StrategyParameter;
 import de.ginisolutions.trader.history.domain.enumeration.INTERVAL;
 import de.ginisolutions.trader.history.domain.enumeration.MARKET;
 import de.ginisolutions.trader.history.domain.enumeration.SYMBOL;
+import de.ginisolutions.trader.learning.calibration.model.ProfitSet;
 import de.ginisolutions.trader.trading.domain.enumeration.STRATEGY;
 
 import javax.validation.constraints.NotBlank;
@@ -94,19 +95,35 @@ public class ProfitSetCCI implements ProfitSet {
     }
 
     @Override
-    public ParameterCCI getParameter() {
+    public StrategyParameter getParameter() {
         return parameter;
     }
 
-    public void setParameter(ParameterCCI parameter) {
-        this.parameter = parameter;
+    @Override
+    public void setParameter(StrategyParameter parameter) {
+        this.parameter = (ParameterCCI) parameter;
     }
 
+    @Override
     public Duration getDuration() {
         return duration;
     }
 
+    @Override
     public void setDuration(Duration duration) {
         this.duration = duration;
+    }
+
+    @Override
+    public String toString() {
+        return "ProfitSetCCI{" +
+            "strategy=" + strategy +
+            ", market=" + market +
+            ", symbol=" + symbol +
+            ", interval=" + interval +
+            ", profit=" + profit +
+            ", parameter=" + parameter +
+            ", duration=" + duration +
+            '}';
     }
 }
