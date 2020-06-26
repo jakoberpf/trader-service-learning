@@ -4,7 +4,7 @@ import de.ginisolutions.trader.common.strategy.parameter.ParameterCCI;
 import de.ginisolutions.trader.common.strategy.parameter.ParameterMM;
 import de.ginisolutions.trader.common.strategy.parameter.ParameterRSI;
 import de.ginisolutions.trader.common.strategy.parameter.StrategyParameter;
-import de.ginisolutions.trader.trading.domain.enumeration.STRATEGY;
+import de.ginisolutions.trader.common.enumeration.STRATEGY;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

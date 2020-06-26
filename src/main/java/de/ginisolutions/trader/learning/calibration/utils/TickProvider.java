@@ -4,11 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import de.ginisolutions.trader.common.market.market.BinanceMarket;
+import de.ginisolutions.trader.common.model.tick.CommonTick;
 import de.ginisolutions.trader.history.domain.TickPackage;
-import de.ginisolutions.trader.history.domain.enumeration.INTERVAL;
-import de.ginisolutions.trader.history.domain.enumeration.MARKET;
-import de.ginisolutions.trader.history.domain.enumeration.SYMBOL;
-import de.ginisolutions.trader.learning.calibration.model.coinapi.CoinapiTestTick;
+import de.ginisolutions.trader.common.enumeration.INTERVAL;
+import de.ginisolutions.trader.common.enumeration.MARKET;
+import de.ginisolutions.trader.common.enumeration.SYMBOL;
+import de.ginisolutions.trader.common.model.tick.pojo.CoinapiTestTick;
 import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -51,7 +52,7 @@ public class TickProvider {
         switch (provider) {
             case "coinapi":
                 file = new File(
-                    Objects.requireNonNull(TickConverter.class.getClassLoader().getResource("static/coinapi_timeseries_BTCUSD.json")).getFile()
+                    Objects.requireNonNull(TickProvider.class.getClassLoader().getResource("static/coinapi_timeseries_BTCUSD.json")).getFile()
                 );
                 LOGGER.info(file.getAbsolutePath());
                 CoinapiTestTick[] coinapi_timeline;
@@ -146,7 +147,7 @@ public class TickProvider {
                 return barSeries;
             case "api_cryptowat":
                 file = new File(
-                    Objects.requireNonNull(TickConverter.class.getClassLoader().getResource("static/cryptowat_ohlc_BTCUSDT.json")).getFile()
+                    Objects.requireNonNull(TickProvider.class.getClassLoader().getResource("static/cryptowat_ohlc_BTCUSDT.json")).getFile()
                 );
                 LOGGER.info(file.getAbsolutePath());
                 try {
@@ -158,7 +159,7 @@ public class TickProvider {
                 }
             case "kaggle_bitfinex":
                 // https://www.kaggle.com/tencars/392-crypto-currency-pairs-at-minute-resolution
-                file = new File(Objects.requireNonNull(TickConverter.class.getClassLoader().getResource("static/kaggle_bitfinex/btceur.csv")).getFile());
+                file = new File(Objects.requireNonNull(TickProvider.class.getClassLoader().getResource("static/kaggle_bitfinex/btceur.csv")).getFile());
                 List<List<String>> bitfinexTimeline = new ArrayList<>();
                 try (CSVReader csvReader = new CSVReader(new FileReader(file));) {
                     String[] values;
@@ -212,7 +213,7 @@ public class TickProvider {
      * @param symbol
      * @return
      */
-    public static BarSeries convertTick2BarSeries(List<TickPackage> testTicks, MARKET market, SYMBOL symbol) {
+    public static BarSeries convertTick2BarSeries(List<CommonTick> testTicks, MARKET market, SYMBOL symbol) {
         BarSeries barSeries = new BaseBarSeriesBuilder()
             .withName(market.getName() + "-" + symbol.getNameUpper())
             .withNumTypeOf(PrecisionNum.class)

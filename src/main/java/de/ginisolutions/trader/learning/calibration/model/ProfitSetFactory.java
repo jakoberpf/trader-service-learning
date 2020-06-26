@@ -4,13 +4,13 @@ import de.ginisolutions.trader.common.strategy.parameter.ParameterCCI;
 import de.ginisolutions.trader.common.strategy.parameter.ParameterMM;
 import de.ginisolutions.trader.common.strategy.parameter.ParameterRSI;
 import de.ginisolutions.trader.common.strategy.parameter.StrategyParameter;
-import de.ginisolutions.trader.history.domain.enumeration.INTERVAL;
-import de.ginisolutions.trader.history.domain.enumeration.MARKET;
-import de.ginisolutions.trader.history.domain.enumeration.SYMBOL;
+import de.ginisolutions.trader.common.enumeration.INTERVAL;
+import de.ginisolutions.trader.common.enumeration.MARKET;
+import de.ginisolutions.trader.common.enumeration.SYMBOL;
 import de.ginisolutions.trader.learning.calibration.model.internal.ProfitSetCCI;
 import de.ginisolutions.trader.learning.calibration.model.internal.ProfitSetMM;
 import de.ginisolutions.trader.learning.calibration.model.internal.ProfitSetRSI;
-import de.ginisolutions.trader.trading.domain.enumeration.STRATEGY;
+import de.ginisolutions.trader.common.enumeration.STRATEGY;
 
 public class ProfitSetFactory {
 

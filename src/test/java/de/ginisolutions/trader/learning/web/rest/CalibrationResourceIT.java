@@ -8,7 +8,7 @@ import de.ginisolutions.trader.learning.service.CalibrationContainerService;
 import de.ginisolutions.trader.learning.service.dto.CalibrationContainerDTO;
 import de.ginisolutions.trader.learning.service.mapper.CalibrationContainerMapper;
 
-import de.ginisolutions.trader.trading.domain.enumeration.STRATEGY;
+import de.ginisolutions.trader.common.enumeration.STRATEGY;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +34,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class CalibrationResourceIT {
 
-    private static final STRATEGY DEFAULT_STRATEGY = STRATEGY.SAMPLE_ENUM;
-    private static final STRATEGY UPDATED_STRATEGY = STRATEGY.SAMPLE_ENUM;
+    private static final STRATEGY DEFAULT_STRATEGY = STRATEGY.MM;
+    private static final STRATEGY UPDATED_STRATEGY = STRATEGY.RSI;
 
     @Autowired
     private CalibrationContainerRepository calibrationContainerRepository;

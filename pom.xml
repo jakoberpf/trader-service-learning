@@ -300,9 +300,9 @@
         </dependency>
         <!--Trader Commons / Domain Dependency-->
         <dependency>
-            <groupId>de.ginisolutions.trader.domain</groupId>
-            <artifactId>trader-domain</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <groupId>de.ginisolutions.trader</groupId>
+            <artifactId>trader-common</artifactId>
+            <version>0.0.3-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>de.ginisolutions.trader.trading</groupId>
@@ -313,11 +313,6 @@
             <groupId>de.ginisolutions.trader.history</groupId>
             <artifactId>trader-service-history</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>5.0</version>
         </dependency>
         <!--Trader Commons / Domain Dependency-->
     </dependencies>

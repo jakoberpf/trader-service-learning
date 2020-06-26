@@ -1,11 +1,9 @@
 package de.ginisolutions.trader.learning.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import de.ginisolutions.trader.trading.domain.enumeration.STRATEGY;
+import de.ginisolutions.trader.common.enumeration.STRATEGY;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.io.Serializable;
 

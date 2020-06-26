@@ -1,6 +1,6 @@
 package de.ginisolutions.trader.learning.service.dto;
 
-import de.ginisolutions.trader.trading.domain.enumeration.STRATEGY;
+import de.ginisolutions.trader.common.enumeration.STRATEGY;
 import io.swagger.annotations.ApiModel;
 import java.io.Serializable;
 

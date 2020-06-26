@@ -1,10 +1,10 @@
 package de.ginisolutions.trader.learning.calibration.model;
 
 import de.ginisolutions.trader.common.strategy.parameter.StrategyParameter;
-import de.ginisolutions.trader.history.domain.enumeration.INTERVAL;
-import de.ginisolutions.trader.history.domain.enumeration.MARKET;
-import de.ginisolutions.trader.history.domain.enumeration.SYMBOL;
-import de.ginisolutions.trader.trading.domain.enumeration.STRATEGY;
+import de.ginisolutions.trader.common.enumeration.INTERVAL;
+import de.ginisolutions.trader.common.enumeration.MARKET;
+import de.ginisolutions.trader.common.enumeration.SYMBOL;
+import de.ginisolutions.trader.common.enumeration.STRATEGY;
 
 import java.time.Duration;
 
