@@ -147,3 +147,4 @@ Desktop.ini
 .eslintcache
 src/test/resources/static/kaggle_bitfinex
 bitstamp_trades_from_20131125_usd.csv
+/src/test/resources/static/coinapi_timeseries_BTCUSD.json
