@@ -24,7 +24,7 @@ public class AttributeBuilder {
                 return buildMovingMomentumAttributes();
             case RSI:
                 return buildRelativeStrengthIndexAttributes();
-            case CCI:
+            case CCIC:
                 return buildCommodityChannelIndexAttributes();
             default:
                 throw new IllegalArgumentException("Invalid strategy" + strategy);

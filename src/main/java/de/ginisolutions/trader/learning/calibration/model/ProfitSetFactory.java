@@ -20,7 +20,7 @@ public class ProfitSetFactory {
                 return new ProfitSetMM(strategy, market, symbol, interval, profit, (ParameterMM) strategyParameter);
             case RSI:
                 return new ProfitSetRSI(strategy, market, symbol, interval, profit, (ParameterRSI) strategyParameter);
-            case CCI:
+            case CCIC:
                 return new ProfitSetCCI(strategy, market, symbol, interval, profit, (ParameterCCI) strategyParameter);
             default:
                 throw new IllegalArgumentException("Invalid strategy " + strategy);
